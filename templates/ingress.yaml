@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: octoprint-web
+  labels:
+    app.kubernetes.io/name: octoprint
+    app.kubernetes.io/instance: octoprint
+    app.kubernetes.io/component: octoprint
+    app.kubernetes.io/part-of: octoprint
+spec:
+  rules:
+    - host: "octo.home"
+      http:
+        paths:
+          - path: "/"
+            pathType: ImplementationSpecific
+            backend:
+              service:
+                name: octoprint-svc
+                port:
+                  name: http
